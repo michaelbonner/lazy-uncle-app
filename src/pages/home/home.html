@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Lazy Uncle</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar [(ngModel)]="searchQuery"></ion-searchbar>
+  <div padding>
+    <button ion-button type="button" (click)="sort('dateSort')">Sort By Birthday</button>
+    <button ion-button type="button" (click)="sort('name')">Sort By Name</button>
+  </div>
+
+  <ion-list>
+    <button ion-item *ngFor="let kid of kids | search : searchQuery | sort: {sortBy:sortBy, descending:descending}" (click)="kidSelected(kid)" >
+      Name: <strong>{{ kid.name }}</strong><br>
+      Age: <strong>{{ kid.parent ? calculateAge(kid.birthday) : 'n/a' }}</strong><br>
+      Birthday: <strong>{{kid.birthday | date : 'M/d'}}</strong>
+    </button>  
+  </ion-list>
+  <p padding>Count: {{kids.length}}</p>
+</ion-content>
