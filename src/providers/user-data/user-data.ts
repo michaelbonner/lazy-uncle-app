@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+import { NavController } from 'ionic-angular';
+
 import { Events } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import { Jwt } from '../../interfaces/jwt';
+
+import { LoginPage } from '../../pages/login/login'
 
 import { ENV } from '@app/env';
 

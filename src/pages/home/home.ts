@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { Events } from 'ionic-angular';
 import { KidDetailPage } from '../kid-detail/kid-detail';
+import { LoginPage } from '../login/login';
 import { PersonServiceProvider } from '../../providers/person-service/person-service';
+import { UserDataServiceProvider } from '../../providers/user-data/user-data';
 import { Kid } from '../../interfaces/kid';
 
 @Component({
@@ -18,8 +21,12 @@ export class HomePage {
 
   descending: boolean = true;
 
-  constructor(public navCtrl: NavController, private personService: PersonServiceProvider) {
+  constructor(public navCtrl: NavController, private personService: PersonServiceProvider, private userData: UserDataServiceProvider, private events: Events) {
     this.initializeKids();
+
+    events.subscribe('user:logout', () => {
+      this.navCtrl.setRoot(LoginPage);
+    });
   }
 
   initializeKids(){        
@@ -33,8 +40,14 @@ export class HomePage {
           return kid;
         });
       },
-      error => console.log( error )
+      error => {
+        this.userData.logout();
+      } 
     );
+  }
+
+  logout(){
+    this.userData.logout();
   }
 
   kidSelected(kid){
