@@ -35,6 +35,7 @@ export class HomePage {
       (response: any) => {
         this.kids = response.map(kid => {
           kid.birthday = new Date(kid.birthday);
+          kid.birthday.setMinutes( kid.birthday.getMinutes() + kid.birthday.getTimezoneOffset() );
           const date = kid.birthday.getDate() < 10 ? `0${kid.birthday.getDate()}` : kid.birthday.getDate();
           kid.dateSort = parseInt( `${kid.birthday.getMonth()}${date}` );
           return kid;
