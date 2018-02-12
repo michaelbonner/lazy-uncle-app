@@ -1,4 +1,4 @@
 export const ENV = {
   mode: 'Production',
-  apiUrl: 'http://lazyuncle.net'
+  apiUrl: 'https://lazyuncle.net'
 }
