@@ -34,7 +34,7 @@ export class HomePage {
       .subscribe(
       (response: any) => {
         this.kids = response.map(kid => {
-          kid.birthday = new Date(kid.birthday.replace(' ','T'));
+          kid.birthday = new Date(kid.birthday);
           const date = kid.birthday.getDate() < 10 ? `0${kid.birthday.getDate()}` : kid.birthday.getDate();
           kid.dateSort = parseInt( `${kid.birthday.getMonth()}${date}` );
           return kid;
