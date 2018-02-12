@@ -18,7 +18,7 @@
   <ion-list>
     <button ion-item *ngFor="let kid of kids | search : searchQuery | sort: {sortBy:sortBy, descending:descending}" (click)="kidSelected(kid)" >
       Name: <strong>{{ kid.name }}</strong><br>
-      Age: <strong>{{ kid.parent ? calculateAge(kid.birthday) : 'n/a' }}</strong><br>
+      <span *ngIf="kid.parent">Age: <strong>{{ calculateAge(kid.birthday) }}</strong><br></span>
       Birthday: <strong>{{kid.birthday | date : 'M/d'}}</strong>
     </button>  
   </ion-list>
