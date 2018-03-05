@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { Kid } from '../../interfaces/kid';
 
 /**
@@ -9,7 +9,6 @@ import { Kid } from '../../interfaces/kid';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-kid-detail',
   templateUrl: 'kid-detail.html',

@@ -24,7 +24,7 @@ export class HomePage {
   constructor(public navCtrl: NavController, private personService: PersonServiceProvider, private userData: UserDataServiceProvider, private events: Events) {
     this.initializeKids();
 
-    events.subscribe('user:logout', () => {
+    this.events.subscribe('user:logout', () => {
       this.navCtrl.setRoot(LoginPage);
     });
   }

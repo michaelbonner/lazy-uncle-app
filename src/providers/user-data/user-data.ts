@@ -10,7 +10,7 @@ import { ENV } from '@app/env';
 
 @Injectable()
 export class UserDataServiceProvider {
-  _favorites: string[] = [];
+  ACCESS_TOKEN = 'access_token';
   HAS_LOGGED_IN = 'hasLoggedIn';
   HAS_SEEN_TUTORIAL = 'hasSeenTutorial';
 
@@ -25,7 +25,7 @@ export class UserDataServiceProvider {
         email, password
       }).subscribe( (data: Jwt) => {
         if( data.access_token ) {
-          localStorage.setItem('access_token',data.access_token);
+          this.storage.set(this.ACCESS_TOKEN,data.access_token);
           this.storage.set(this.HAS_LOGGED_IN, true);
           this.setEmail(email);
           this.events.publish('user:login');

@@ -7,10 +7,7 @@ import { UserDataServiceProvider } from '../../providers/user-data/user-data';
 
 import { Events } from 'ionic-angular';
 
-// import { UserOptions } from '../../interfaces/user-options';
-
 import { TabsPage } from '../tabs/tabs';
-// import { SignupPage } from '../signup/signup';
 
 
 @Component({

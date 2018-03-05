@@ -1,6 +1,7 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { JwtModule } from '@auth0/angular-jwt';
+import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { Storage } from '@ionic/storage';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
@@ -22,6 +23,17 @@ import { UserDataServiceProvider } from '../providers/user-data/user-data';
 
 import { IonicStorageModule } from '@ionic/storage';
 
+const storage = new Storage({});
+ 
+export function jwtOptionsFactory() {
+  return {
+    tokenGetter: () => {
+      return storage.get('access_token');
+    },
+    whitelistedDomains: ['lazy-uncle-api.test','lazyuncle.net']
+  }
+}
+
 @NgModule({
   declarations: [
     MyApp,
@@ -38,11 +50,9 @@ import { IonicStorageModule } from '@ionic/storage';
     BrowserModule,
     HttpClientModule,
     JwtModule.forRoot({
-      config: {
-        tokenGetter: () => {
-          return localStorage.getItem('access_token');
-        },
-        whitelistedDomains: ['lazy-uncle-api.test','lazyuncle.net']
+      jwtOptionsProvider: {
+        provide: JWT_OPTIONS,
+        useFactory: jwtOptionsFactory
       }
     }),
     IonicModule.forRoot(MyApp),
