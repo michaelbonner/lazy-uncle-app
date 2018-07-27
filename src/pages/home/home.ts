@@ -40,6 +40,14 @@ export class HomePage {
           kid.dateSort = parseInt( `${kid.birthday.getMonth()}${date}` );
           return kid;
         });
+        const currentDate = new Date();
+        const date = currentDate.getDate() < 10 ? `0${currentDate.getDate()}` : currentDate.getDate();
+        const currentDateKid: Kid = { 
+          name: 'Current Date', 
+          birthday: currentDate, 
+          dateSort: parseInt( `${currentDate.getMonth()}${date}` ) 
+        };
+        this.kids.push(currentDateKid);
       },
       error => {
         this.userData.logout();
