@@ -1,3 +1,6 @@
 page-home {
-
+    .current-date {
+        background: color($colors, primary, base);
+        color: color($colors, light, base);
+    }
 }

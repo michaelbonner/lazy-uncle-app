@@ -16,10 +16,17 @@
   </div>
 
   <ion-list>
-    <button ion-item *ngFor="let kid of kids | search : searchQuery | sort: {sortBy:sortBy, descending:descending}" (click)="kidSelected(kid)" >
-      Name: <strong>{{ kid.name }}</strong><br>
-      <span *ngIf="kid.parent">Age: <strong>{{ calculateAge(kid.birthday) }}</strong><br></span>
-      Birthday: <strong>{{kid.birthday | date : 'M/d'}}</strong>
+    <button ion-item *ngFor="let kid of kids | search : searchQuery | sort: {sortBy:sortBy, descending:descending}" (click)="kidSelected(kid)" [ngClass]="{'current-date': kid.name === 'Current Date'}">
+      <span *ngIf="kid.name !== 'Current Date'">
+        Name: 
+      </span>
+      <strong>{{ kid.name }}</strong><br>
+      <span *ngIf="kid.parent">
+        Age: <strong>{{ calculateAge(kid.birthday) }}</strong><br>
+      </span>
+      <span *ngIf="kid.name !== 'Current Date'">
+        Birthday: <strong>{{kid.birthday | date : 'M/d'}}</strong>
+      </span>
     </button>  
   </ion-list>
   <p padding>Count: {{kids.length}}</p>
